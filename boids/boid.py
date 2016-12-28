@@ -2,8 +2,6 @@ from matplotlib import pyplot as plt
 from matplotlib import animation
 import random
 
-# ORIGINAL CODE FOR DOCUMENTATION PURPOSE
-# Deliberately terrible code for teaching purposes
 
 boids_x=[random.uniform(-450,50.0) for x in range(50)]
 boids_y=[random.uniform(300.0,600.0) for x in range(50)]
@@ -12,30 +10,30 @@ boid_y_velocities=[random.uniform(-20.0,20.0) for x in range(50)]
 boids=(boids_x,boids_y,boid_x_velocities,boid_y_velocities)
 
 def update_boids(boids):
-    xs,ys,xvs,yvs=boids
+    x_coord,y_coord,x_velo,y_velo=boids
     # Fly towards the middle
     for i in range(50):
         for j in range(50):
-            xvs[i]=xvs[i]+(xs[j]-xs[i])*0.01/len(xs)
+            x_velo[i]=x_velo[i]+(x_coord[j]-x_coord[i])*0.01/len(x_coord)
     for i in range(50):
         for j in range(50):
-            yvs[i]=yvs[i]+(ys[j]-ys[i])*0.01/len(xs)
+            y_velo[i]=y_velo[i]+(y_coord[j]-y_coord[i])*0.01/len(x_coord)
     # Fly away from nearby boids
     for i in range(50):
         for j in range(50):
-            if (xs[j]-xs[i])**2 + (ys[j]-ys[i])**2 < 100:
-                xvs[i]=xvs[i]+(xs[i]-xs[j])
-                yvs[i]=yvs[i]+(ys[i]-ys[j])
+            if (x_coord[j]-x_coord[i])**2 + (y_coord[j]-y_coord[i])**2 < 100:
+                x_velo[i]=x_velo[i]+(x_coord[i]-x_coord[j])
+                y_velo[i]=y_velo[i]+(y_coord[i]-y_coord[j])
     # Try to match speed with nearby boids
     for i in range(50):
         for j in range(50):
-            if (xs[j]-xs[i])**2 + (ys[j]-ys[i])**2 < 10000:
-                xvs[i]=xvs[i]+(xvs[j]-xvs[i])*0.125/len(xs)
-                yvs[i]=yvs[i]+(yvs[j]-yvs[i])*0.125/len(xs)
+            if (x_coord[j]-x_coord[i])**2 + (y_coord[j]-y_coord[i])**2 < 10000:
+                x_velo[i]=x_velo[i]+(x_velo[j]-x_velo[i])*0.125/len(x_coord)
+                y_velo[i]=y_velo[i]+(y_velo[j]-y_velo[i])*0.125/len(x_coord)
     # Move according to velocities
     for i in range(50):
-        xs[i]=xs[i]+xvs[i]
-        ys[i]=ys[i]+yvs[i]
+        x_coord[i]=x_coord[i]+x_velo[i]
+        y_coord[i]=y_coord[i]+y_velo[i]
 
 
 figure=plt.figure()
