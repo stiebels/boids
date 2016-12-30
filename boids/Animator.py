@@ -1,15 +1,41 @@
 from matplotlib import pyplot as plt
 from matplotlib import animation
 from boids.Flock import Flock
+import yaml
+import os
 
 
 class Animator(object):
-    def __init__(self, path, size=50, fly_middle_strength=0.01, fly_away_limit=100, speed_match_strength=0.125, distance_limit=10000,
-                 frames=470, interval=50, xlim=(-500, 1500), ylim=(-500, 1500)):
-        self.frames = frames
-        self.flock = Flock(size, fly_middle_strength, fly_away_limit, speed_match_strength, distance_limit)
-        self.figure = plt.figure()
-        self.axes = plt.axes(xlim=xlim, ylim=ylim)
+    def __init__(self, path, size, fly_middle_strength, fly_away_limit, speed_match_strength, distance_limit,
+                 frames, config, interval=50, xlim=(-500, 1500), ylim=(-500, 1500)):
+
+        if config==True:
+            directory = str(os.path.dirname(os.path.abspath(__file__)))[:-5]
+            config_yml = yaml.safe_load(open(directory + 'config.ymls'))
+            size = config_yml['flock_size']
+            fly_middle_strength = config_yml['fly_middle_strength']
+            fly_away_limit = config_yml['fly_away_limit']
+            speed_match_strength = config_yml['speed_match_strength']
+            distance_limit = config_yml['distance_limit']
+            self.frames = config_yml['frames']
+            interval = config_yml['interval']
+            x_velo_range = config_yml['x_velo_range']
+            y_velo_range = config_yml['y_velo_range']
+            x_coord_range = config_yml['x_coord_range']
+            y_coord_range = config_yml['y_coord_range']
+            self.flock = Flock(size, fly_middle_strength, fly_away_limit, speed_match_strength, distance_limit,
+                               x_coord_range, y_coord_range, x_velo_range, y_velo_range)
+            self.figure = plt.figure()
+            self.axes = plt.axes(xlim=config_yml['xlim'], ylim=config_yml['ylim'])
+
+        else:
+            self.frames = frames
+            self.flock = Flock(size, fly_middle_strength, fly_away_limit, speed_match_strength, distance_limit,
+                               x_coord_range=(-450, 50), y_coord_range=(300, 600),
+                               x_velo_range=(0, 10), y_velo_range=(-20, 20))
+            self.figure = plt.figure()
+            self.axes = plt.axes(xlim=xlim, ylim=ylim)
+
         self.count = 0
         self.scatter = self.axes.scatter(self.format_flock()[0], self.format_flock()[1])
         self.ani = animation.FuncAnimation(self.figure, self.animate, frames=self.frames, interval=interval)

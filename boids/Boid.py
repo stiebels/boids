@@ -13,7 +13,7 @@ class Boid(object):
         self.velocity = np.asarray((self.x_velo, self.y_velo))
 
 
-    def fly_middle(self, Flock, fly_middle_strength=0.01):
+    def fly_middle(self, Flock, fly_middle_strength):
         fly_middle_reg = fly_middle_strength / Flock.size
         for boid in Flock.boids:
             rel_pos = boid.position - self.position
@@ -21,7 +21,7 @@ class Boid(object):
             self.velocity += rel_pos * fly_middle_reg
 
 
-    def fly_away(self, Flock, fly_away_limit=100, scaling=2):
+    def fly_away(self, Flock, fly_away_limit, scaling=2):
         for boid in Flock.boids:
             rel_pos_sq = sum((boid.position - self.position) ** scaling)
             if rel_pos_sq < fly_away_limit:
@@ -30,7 +30,7 @@ class Boid(object):
                 self.velocity += rel_pos
 
 
-    def match_speed(self, Flock, speed_match_strength=0.125, scaling=2, distance_limit=10000):
+    def match_speed(self, Flock, speed_match_strength, distance_limit, scaling=2):
         speed_match_reg = speed_match_strength / Flock.size
         for boid in Flock.boids:
             rel_pos_sq = sum((boid.position - self.position) ** scaling)
