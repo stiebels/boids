@@ -9,9 +9,9 @@ class Animator(object):
     def __init__(self, path, size, fly_middle_strength, fly_away_limit, speed_match_strength, distance_limit,
                  frames, config, interval=50, xlim=(-500, 1500), ylim=(-500, 1500)):
 
-        if config==True:
-            directory = str(os.path.dirname(os.path.abspath(__file__)))[:-5]
-            config_yml = yaml.safe_load(open(directory + 'config.ymls'))
+        if config==False:
+            directory = str(os.path.dirname(os.path.abspath('__file__')))
+            config_yml = yaml.safe_load(open(directory + '/config.yml'))
             size = config_yml['flock_size']
             fly_middle_strength = config_yml['fly_middle_strength']
             fly_away_limit = config_yml['fly_away_limit']

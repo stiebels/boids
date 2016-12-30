@@ -1,0 +1,13 @@
+flock_size: 50
+fly_middle_strength: 0.01
+fly_away_limit: 100
+speed_match_strength: 0.125
+distance_limit: 10000
+frames: 450
+interval: 50
+x_coord_range: [-450, 50]
+y_coord_range: [300, 600]
+x_velo_range: [0, 10]
+y_velo_range: [-20, 20]
+xlim: [-500, 1500]
+ylim: [-500, 1500]
