@@ -14,7 +14,7 @@ def runModule():
     parser.add_argument('-sm', dest='speed_match_strength', default=0.125, type=float, help='Specifies how strongly flock member match speed of other members (default: 0.125)')
     parser.add_argument('-dl', dest='distance_limit', default=10000, type=float, help='Specifies distance limit for speed matching. If flock member is within this limit to other member it matches its speed accordingly (default: 10000)')
     parser.add_argument('-p', dest='path', default=None, type=str, help='If animation should be saved, specify path here (e.g. /home/usr/boids.mp4 | default: None)')
-    parser.add_argument('-f', dest='frames', default=450, help='Specify duration/length of animation in number of frames (default: 450)')
+    parser.add_argument('-f', dest='frames', default=450, type=int, help='Specify duration/length of animation in number of frames (default: 450)')
 
     args = parser.parse_args()
     Animator(size=args.size, fly_middle_strength=args.fly_middle_strength, fly_away_limit=args.fly_away_limit,

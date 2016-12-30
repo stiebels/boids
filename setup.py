@@ -10,6 +10,6 @@ setup(name = 'boids',
     url = 'https://github.com/stiebels/',
     packages = find_packages(exclude=['*test']),
     license = 'MIT',
-    install_requires = ['numpy', 'matplotlib', 'argparse'],
-	scripts= ['scripts/boids']
+    install_requires = ['numpy', 'matplotlib', 'argparse', 'pyyaml'],
+    scripts= ['scripts/boids']
     )
