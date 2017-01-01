@@ -10,7 +10,7 @@ class Animator(object):
                  frames, config, interval=50, xlim=(-500, 1500), ylim=(-500, 1500)):
 
         if config==True:
-            directory = str(os.path.dirname(os.path.abspath('__file__')))
+            directory = str(os.path.dirname(os.path.abspath(__file__)))
             config_yml = yaml.safe_load(open(directory + '/config.yml'))
             size = config_yml['flock_size']
             fly_middle_strength = config_yml['fly_middle_strength']
