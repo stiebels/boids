@@ -7,8 +7,8 @@ import yaml
 
 
 def load_flock_test():
-    directory = str(os.path.dirname(os.path.abspath(__file__)))
-    config_yml = yaml.safe_load(open(directory + '/config.yml'))
+    directory = str(os.path.dirname(os.path.abspath(__file__)))[:-11]
+    config_yml = yaml.safe_load(open(directory + 'config.yml'))
     size = config_yml['flock_size']
     fly_middle_strength = config_yml['fly_middle_strength']
     fly_away_limit = config_yml['fly_away_limit']

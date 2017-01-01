@@ -7,7 +7,7 @@ from boids.Animator import Animator
 
 def load_ani_fflock_fixture():
     # Loads a predefined format_flock result
-    directory = str(os.path.dirname(os.path.abspath('__file__')) + '/fixtures/')
+    directory = str(os.path.dirname(os.path.abspath(__file__)) + '/fixtures/')
     file = open(directory+"animator_fflock.p",'rb')
     m_animator_fflock = pickle.load(file)
     file.close()
@@ -17,7 +17,7 @@ def load_ani_fflock_fixture():
 def test_format_flock():
     random.seed(0)
     t_Animator = Animator(size=50, fly_middle_strength=0.01, fly_away_limit=100,
-             speed_match_strength=0.125, distance_limit=10000, path=str(os.path.dirname(os.path.abspath('__file__')) + '/test_file.mp4'),
+             speed_match_strength=0.125, distance_limit=10000, path=str(os.path.dirname(os.path.abspath(__file__)) + '/test_file.mp4'),
              frames=5, config=False)
     assert(t_Animator.format_flock() == load_ani_fflock_fixture())
 

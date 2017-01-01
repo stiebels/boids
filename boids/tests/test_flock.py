@@ -16,8 +16,8 @@ def load_flock_fixture():
 
 
 def load_flock_test():
-    directory = str(os.path.dirname(os.path.abspath(__file__)))
-    config_yml = yaml.safe_load(open(directory + '/config.yml'))
+    directory = str(os.path.dirname(os.path.abspath(__file__)))[:-11]
+    config_yml = yaml.safe_load(open(directory + 'config.yml'))
     size = config_yml['flock_size']
     fly_middle_strength = config_yml['fly_middle_strength']
     fly_away_limit = config_yml['fly_away_limit']
@@ -34,16 +34,21 @@ def load_flock_test():
 
 def test_Flock_init():
     random.seed(0)
-    t_Flock = load_flock_test()
+    t_Flock = Flock(size=50, fly_middle_strength=0.01, fly_away_limit=100, speed_match_strength=0.125,
+                    distance_limit=10000,
+                    x_coord_range=(-450, 50), y_coord_range=(300, 600),
+                    x_velo_range=(0, 10), y_velo_range=(-20, 20))
     m_Flock = load_flock_fixture()
-    for key in m_Flock.__dict__:
-        if key=='boids':
-            assert(len(m_Flock.boids) == len(t_Flock.boids))
-        else:
-            try:
-                assert(m_Flock.__dict__[key] == t_Flock.__dict__[key]).all()
-            except(AttributeError):
-                assert(m_Flock.__dict__[key] == t_Flock.__dict__[key])
+    assert (len(m_Flock.__dict__['boids']) == len(t_Flock.__dict__['boids']))
+    assert (m_Flock.__dict__['y_velo_range'] == t_Flock.__dict__['y_velo_range'])
+    assert (m_Flock.__dict__['x_velo_range'] == t_Flock.__dict__['x_velo_range'])
+    assert (m_Flock.__dict__['y_coord_range'] == t_Flock.__dict__['y_coord_range'])
+    assert (m_Flock.__dict__['speed_match_strength'] == t_Flock.__dict__['speed_match_strength'])
+    assert (m_Flock.__dict__['distance_limit'] == t_Flock.__dict__['distance_limit'])
+    assert (m_Flock.__dict__['x_coord_range'] == t_Flock.__dict__['x_coord_range'])
+    assert (m_Flock.__dict__['size'] == t_Flock.__dict__['size'])
+    assert (m_Flock.__dict__['fly_away_limit'] == t_Flock.__dict__['fly_away_limit'])
+    assert (m_Flock.__dict__['fly_middle_strength'] == t_Flock.__dict__['fly_middle_strength'])
 
 
 def test_create_boids():
