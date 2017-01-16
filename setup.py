@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(name = 'boids',
-    version = '0.1',
+    version = '1.0',
     description = '',
     author = 'Simon Stiebellehner',
     author_email = 'ucabsti@ucl.ac.uk',
