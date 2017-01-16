@@ -15,7 +15,7 @@ The Boids package includes the following main classes:
 <b>Description of the command line interface:</b>
 
 ```
-usage: boids [-h] [-c CONFIG] [-s SIZE] [-fm FLY_MIDDLE_STRENGTH]
+usage: boids [-h] [-c CONFIG] -s SIZE [-fm FLY_MIDDLE_STRENGTH]
              [-fa FLY_AWAY_LIMIT] [-sm SPEED_MATCH_STRENGTH]
              [-dl DISTANCE_LIMIT] [-p PATH] [-f FRAMES]
 
@@ -27,7 +27,6 @@ optional arguments:
                         (True/False; default: False). Overwrites all other
                         input parameters except saving the animation.
   -s SIZE               Specifies size of flock, i.e. number of flock members
-                        (default: 50)
   -fm FLY_MIDDLE_STRENGTH
                         Specifies how strongly flock members are attracted to
                         center (default: 0.01)
