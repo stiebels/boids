@@ -2,8 +2,12 @@ import random
 import numpy as np
 from .Boid import Boid
 
+'''
+Implements Flock as controlling instance of each Boid
+'''
 
 class Flock(object):
+    # Flock is controlling instances of Boid
     def __init__(self, size, fly_middle_strength, fly_away_limit, speed_match_strength, distance_limit,
                  x_coord_range, y_coord_range,
                  x_velo_range, y_velo_range):
@@ -18,7 +22,9 @@ class Flock(object):
         self.speed_match_strength = speed_match_strength
         self.distance_limit = distance_limit
 
+
     def create_boids(self):
+        # Creates Boid objects
         boids = np.asarray([Boid(
             random.uniform(self.x_coord_range[0], self.x_coord_range[1]),
             random.uniform(self.y_coord_range[0], self.y_coord_range[1]),
@@ -27,7 +33,9 @@ class Flock(object):
         ) for boid in range(0, self.size)])
         return boids
 
+
     def update_boids(self):
+        # Invokes computation of new position of each Boid
         for boid in self.boids:
             boid.fly_middle(self, fly_middle_strength=self.fly_middle_strength)
         for boid in self.boids:

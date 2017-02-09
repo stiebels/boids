@@ -7,6 +7,7 @@ import yaml
 
 
 def load_flock_test():
+    # Generates flock object based on config file, i.e. allows specification of test case using the yaml config file
     directory = str(os.path.dirname(os.path.abspath(__file__)))[:-11]
     config_yml = yaml.safe_load(open(directory + 'config.yml'))
     size = config_yml['flock_size']
@@ -24,7 +25,7 @@ def load_flock_test():
 
 
 def load_boid_fixture():
-    # Loads a predefined Boid object
+    # Loads a predefined Boid object (fixture)
     directory = str(os.path.dirname(os.path.abspath(__file__)) + '/fixtures/')
     file = open(directory+"boid.p",'rb')
     m_Boid = pickle.load(file)
@@ -33,7 +34,7 @@ def load_boid_fixture():
 
 
 def load_flock_fixture():
-    # Loads a predefined Flock object
+    # Loads a predefined Flock object (fixture)
     directory = str(os.path.dirname(os.path.abspath(__file__)) + '/fixtures/')
     file = open(directory+"flock.p",'rb')
     m_Flock = pickle.load(file)
@@ -42,8 +43,10 @@ def load_flock_fixture():
 
 
 def test_Boid_init():
+    # Tests constructor of class 'Boid'
     m_Boid = load_boid_fixture()
     t_Boid = Boid(x_coordinate=-100, y_coordinate=400, x_velocity=5, y_velocity=10)
+
     for key in m_Boid.__dict__:
         try:
             assert(m_Boid.__dict__[key] == t_Boid.__dict__[key]).all()
@@ -52,9 +55,11 @@ def test_Boid_init():
 
 
 def test_fly_middle():
+    # Tests function match_speed by comparing return array (i.e. computation result) to fixture
     random.seed(0)
     t_Flock = load_flock_test()
     m_Flock = load_flock_fixture()
+
     for i in range(m_Flock.size):
         assert(t_Flock.boids[i].velocity == m_Flock.boids[i].velocity).all()
         m_Flock.boids[i].fly_middle(m_Flock, t_Flock.fly_middle_strength)
@@ -63,9 +68,11 @@ def test_fly_middle():
 
 
 def test_fly_away():
+    # Tests function match_speed by comparing return array (i.e. computation result) to fixture
     random.seed(0)
     t_Flock = load_flock_test()
     m_Flock = load_flock_fixture()
+
     for i in range(m_Flock.size):
         assert(t_Flock.boids[i].velocity == m_Flock.boids[i].velocity).all()
         m_Flock.boids[i].fly_away(m_Flock, t_Flock.fly_away_limit)
@@ -74,9 +81,11 @@ def test_fly_away():
 
 
 def test_match_speed():
+    # Tests function match_speed by comparing return array (i.e. computation result) to fixture
     random.seed(0)
     t_Flock = load_flock_test()
     m_Flock = load_flock_fixture()
+
     for i in range(m_Flock.size):
         assert(t_Flock.boids[i].velocity == m_Flock.boids[i].velocity).all()
         m_Flock.boids[i].match_speed(m_Flock, t_Flock.speed_match_strength, t_Flock.distance_limit)
@@ -85,6 +94,7 @@ def test_match_speed():
 
 
 def test_move():
+    # Tests function match_speed by comparing computation result to fixture
     random.seed(0)
     t_Flock = load_flock_test()
     m_Flock = load_flock_fixture()

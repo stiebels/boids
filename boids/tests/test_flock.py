@@ -7,7 +7,7 @@ import yaml
 
 
 def load_flock_fixture():
-    # Loads a predefined Flock object
+    # Loads a predefined Flock object (fixture)
     directory = str(os.path.dirname(os.path.abspath(__file__)) + '/fixtures/')
     file = open(directory+"flock.p",'rb')
     m_Flock = pickle.load(file)
@@ -16,6 +16,7 @@ def load_flock_fixture():
 
 
 def load_flock_test():
+    # Generates flock object based on config file, i.e. allows specification of test case using the yaml config file
     directory = str(os.path.dirname(os.path.abspath(__file__)))[:-11]
     config_yml = yaml.safe_load(open(directory + 'config.yml'))
     size = config_yml['flock_size']
@@ -33,12 +34,14 @@ def load_flock_test():
 
 
 def test_Flock_init():
+    # Tests constructor of class 'Flock'
     random.seed(0)
     t_Flock = Flock(size=50, fly_middle_strength=0.01, fly_away_limit=100, speed_match_strength=0.125,
                     distance_limit=10000,
                     x_coord_range=(-450, 50), y_coord_range=(300, 600),
                     x_velo_range=(0, 10), y_velo_range=(-20, 20))
     m_Flock = load_flock_fixture()
+
     assert (len(m_Flock.__dict__['boids']) == len(t_Flock.__dict__['boids']))
     assert (m_Flock.__dict__['y_velo_range'] == t_Flock.__dict__['y_velo_range'])
     assert (m_Flock.__dict__['x_velo_range'] == t_Flock.__dict__['x_velo_range'])
@@ -52,6 +55,7 @@ def test_Flock_init():
 
 
 def test_create_boids():
+    # Tests function create_boids
     random.seed(0)
     t_Flock = load_flock_test()
     m_Flock = load_flock_fixture()
@@ -65,6 +69,7 @@ def test_create_boids():
 
 
 def test_update_boids():
+    # Tests function update_boids
     random.seed(0)
     t_Flock = load_flock_test()
 

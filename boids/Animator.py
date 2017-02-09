@@ -4,12 +4,17 @@ from .Flock import Flock
 import yaml
 import os
 
+'''
+Implements Animator as interface to user and realization of animation
+'''
 
 class Animator(object):
+    # Creates Flock and animation
     def __init__(self, path, size, fly_middle_strength, fly_away_limit, speed_match_strength, distance_limit,
                  frames, config, interval=50, xlim=(-500, 1500), ylim=(-500, 1500)):
 
         if config == 1:
+            # If user chose to use values specified in config file
             directory = str(os.path.dirname(os.path.abspath(__file__)))
             config_yml = yaml.safe_load(open(directory + '/config.yml'))
             size = config_yml['flock_size']
@@ -29,6 +34,7 @@ class Animator(object):
             self.axes = plt.axes(xlim=config_yml['xlim'], ylim=config_yml['ylim'])
 
         else:
+            # If user chose to specify values using the command line interface
             self.frames = frames
             self.flock = Flock(size, fly_middle_strength, fly_away_limit, speed_match_strength, distance_limit,
                                x_coord_range=(-450, 50), y_coord_range=(300, 600),
@@ -42,12 +48,15 @@ class Animator(object):
         self.Writer = animation.writers['ffmpeg']
         self.writer = self.Writer(fps=15, metadata=dict(artist='Simon Stiebellehner'), bitrate=1800)
         if path:
+            # If path provided through cmd interface, save animation
             self.ani.save(path, writer=self.writer)
         else:
+            # If path not provided, show animation
             plt.show()
 
 
     def format_flock(self):
+        # Formats computation results to fit animation requirements
         boids_x_coords = []
         boids_y_coords = []
         for boid in self.flock.boids:
@@ -57,6 +66,7 @@ class Animator(object):
 
 
     def animate(self, i):
+        # Implements the animation itself
         self.count += 1
         if self.count > self.frames:
             plt.close(self.figure)

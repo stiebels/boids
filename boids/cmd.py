@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 from .Animator import Animator
 
 '''
-This class implements the command line interface.
+Implements the command line interface.
 '''
 
 def runModule():

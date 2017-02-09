@@ -6,7 +6,7 @@ from ..Animator import Animator
 
 
 def load_ani_fflock_fixture():
-    # Loads a predefined format_flock result
+    # Loads a predefined format_flock result (fixture)
     directory = str(os.path.dirname(os.path.abspath(__file__)) + '/fixtures/')
     file = open(directory+"animator_fflock.p",'rb')
     m_animator_fflock = pickle.load(file)
@@ -15,6 +15,7 @@ def load_ani_fflock_fixture():
 
 
 def test_format_flock():
+    # Tests the function 'format_flock' by comparing return value to fixture
     random.seed(0)
     t_Animator = Animator(size=50, fly_middle_strength=0.01, fly_away_limit=100,
              speed_match_strength=0.125, distance_limit=10000, path=str(os.path.dirname(os.path.abspath(__file__)) + '/test_file.mp4'),
@@ -23,6 +24,7 @@ def test_format_flock():
 
 
 def test_Animator_init():
+    # Tests constructor of class Animator
     with patch.object(Animator, '__init__', return_value=None) as m_Animator:
         t_Animator = Animator(size=50, fly_middle_strength=0.01, fly_away_limit=100,
                               speed_match_strength=0.125, distance_limit=10000, path='dummy',
