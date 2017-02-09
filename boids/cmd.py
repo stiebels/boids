@@ -7,7 +7,7 @@ Implements the command line interface.
 
 def runModule():
     parser = ArgumentParser(description='This package simulates the aggregate motion of a flock.')
-    parser.add_argument('-c', dest='config', default=0, type=int, help='Uses pre-defined config file to specify parameters (1 (true) / 0 (false); default: 0 (false)). Overwrites all other input parameters except saving the animation.')
+    parser.add_argument('-c', dest='config', default=0, type=int, help='Uses pre-defined config file to specify parameters (1 (true) / 0 (false); default: 0 (false)). File can be editted/replaced to use other input parameters. Overwrites all other input parameters except saving the animation.')
     parser.add_argument('-s', dest='size', type=int, help='Specifies size of flock, i.e. number of flock members (default: 50)')
     parser.add_argument('-fm', dest='fly_middle_strength', default=0.01, type=float, help='Specifies how strongly flock members are attracted to center (default: 0.01)')
     parser.add_argument('-fa', dest='fly_away_limit', default=100, type=float, help='Specifies distance limit for flying away from other flock members. If flock member is within this limit to other member it flies away from it (default: 100)')
@@ -18,8 +18,11 @@ def runModule():
 
     args = parser.parse_args()
 
+    if (args.config != 0) or (args.config != 1):
+        parser.error('Input invalid. Please, use 1 for loading config file or 0 for specifying parameters in console.')
+
     if (args.size is None) and (args.config == 0):
-        parser.error('Please, specify the flock size (-s) or use the config file.')
+        parser.error('No flock size specified. Please, specify the flock size (-s) or use the config file.')
     else:
         Animator(size=args.size, fly_middle_strength=args.fly_middle_strength, fly_away_limit=args.fly_away_limit,
                  speed_match_strength=args.speed_match_strength, distance_limit=args.distance_limit, path=args.path,
