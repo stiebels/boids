@@ -1,6 +1,6 @@
 import random
 import numpy as np
-from boids.Boid import Boid
+from .Boid import Boid
 
 
 class Flock(object):

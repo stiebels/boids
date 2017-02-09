@@ -1,5 +1,5 @@
-from boids.Flock import Flock
-from boids.Boid import Boid
+from ..Flock import Flock
+from ..Boid import Boid
 import pickle
 import random
 import os

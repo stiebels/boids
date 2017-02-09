@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from boids.Animator import Animator
+from .Animator import Animator
 
 '''
 This class implements the command line interface.

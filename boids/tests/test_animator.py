@@ -2,7 +2,7 @@ import pickle
 import os
 import random
 from mock import patch
-from boids.Animator import Animator
+from ..Animator import Animator
 
 
 def load_ani_fflock_fixture():

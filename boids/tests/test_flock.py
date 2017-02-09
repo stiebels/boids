@@ -1,4 +1,4 @@
-from boids.Flock import Flock
+from ..Flock import Flock
 from mock import patch
 import random
 import os

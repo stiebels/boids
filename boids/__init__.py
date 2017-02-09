@@ -1,3 +1,3 @@
-from boids.Animator import Animator
-from boids.Boid import Boid
-from boids.Flock import Flock
+from .Animator import Animator
+from .Boid import Boid
+from .Flock import Flock

@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 from matplotlib import animation
-from boids.Flock import Flock
+from .Flock import Flock
 import yaml
 import os
 
