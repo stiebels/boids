@@ -18,7 +18,7 @@ def test_format_flock():
     # Tests the function 'format_flock' by comparing return value to fixture
     random.seed(0)
     t_Animator = Animator(size=50, fly_middle_strength=0.01, fly_away_limit=100,
-             speed_match_strength=0.125, distance_limit=10000, path=str(os.path.dirname(os.path.abspath(__file__)) + '/test_file.mp4'),
+             speed_match_strength=0.125, distance_limit=10000, path=str(os.path.dirname(os.path.abspath(__file__)) + '/fixtures/test_animation.mp4'),
              frames=5, config=False)
     assert(t_Animator.format_flock() == load_ani_fflock_fixture())
 

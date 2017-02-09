@@ -7,8 +7,8 @@ The package simulates the flight of a flock, displaying it in an animated plot.
 
 The Boids package includes the following main classes:
 
-1. <b><code>Boid</code></b> - This class incorporates the flying behaviour of the boids and their movement.
-2. <b><code>Flock</code></b> - This class acts as a controlling instance that creates and updates the boid instances.
+1. <b><code>Boid</code></b> - This class incorporates the flying behaviour of a boid and its movement.
+2. <b><code>Flock</code></b> - This class acts as a controlling/aggregating instance that creates and updates each boid instance.
 3. <b><code>Animator</code></b> - This class incorporates the plotting and animation behaviour.
 
 
@@ -24,9 +24,10 @@ This package simulates the aggregate motion of a flock.
 optional arguments:
   -h, --help            show this help message and exit
   -c CONFIG             Uses pre-defined config file to specify parameters (1
-                        (true) / 0 (false); default: 0 (false)). Overwrites
-                        all other input parameters except saving the
-                        animation.
+                        (true) / 0 (false); default: 0 (false)). File can be
+                        editted/replaced to use other input parameters.
+                        Overwrites all other input parameters except saving
+                        the animation.
   -s SIZE               Specifies size of flock, i.e. number of flock members
                         (default: 50)
   -fm FLY_MIDDLE_STRENGTH
@@ -45,5 +46,4 @@ optional arguments:
                         /home/usr/boids.mp4 | default: None)
   -f FRAMES             Specify duration/length of animation in number of
                         frames (default: 450)
-
 ```

@@ -18,10 +18,12 @@ def runModule():
 
     args = parser.parse_args()
 
-    if (args.config != 0) or (args.config != 1):
+    if (args.config not in [0, 1]):
+        # Catches invalid input value for cmd parameter 'config'
         parser.error('Input invalid. Please, use 1 for loading config file or 0 for specifying parameters in console.')
 
     if (args.size is None) and (args.config == 0):
+        # Catches not specified flock size if config not used
         parser.error('No flock size specified. Please, specify the flock size (-s) or use the config file.')
     else:
         Animator(size=args.size, fly_middle_strength=args.fly_middle_strength, fly_away_limit=args.fly_away_limit,

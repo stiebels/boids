@@ -68,7 +68,7 @@ def test_fly_middle():
 
 
 def test_fly_away():
-    # Tests function match_speed by comparing return array (i.e. computation result) to fixture
+    # Tests function match_speed by comparing computation result to fixture
     random.seed(0)
     t_Flock = load_flock_test()
     m_Flock = load_flock_fixture()
@@ -81,7 +81,7 @@ def test_fly_away():
 
 
 def test_match_speed():
-    # Tests function match_speed by comparing return array (i.e. computation result) to fixture
+    # Tests function match_speed by comparing computation result to fixture
     random.seed(0)
     t_Flock = load_flock_test()
     m_Flock = load_flock_fixture()
