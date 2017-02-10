@@ -14,6 +14,6 @@ setup(name = 'boids',
     install_requires = ['numpy', 'matplotlib', 'argparse', 'pyyaml'],
     test_requires=['mock', 'pyyaml'],
     scripts= ['scripts/boids'],
-    include_package_data=True
-    #data_files=[('boids', ['config.yml'])]
+    include_package_data=True,
+    data_files=[('boids', ['config.yml'])]
     )
