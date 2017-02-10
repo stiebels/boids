@@ -15,5 +15,5 @@ setup(name = 'boids',
     test_requires=['mock', 'pyyaml'],
     scripts= ['scripts/boids'],
     include_package_data=True,
-    data_files=[('boids', ['../config.yml'])]
+    data_files=[('/', ['config.yml'])]
     )
