@@ -1,8 +1,5 @@
 # The Boids Package
 
-The Boids is a software package written in Python that was created and packaged as part of the assessment of the course MPHYG001 at University College London:
-http://github-pages.ucl.ac.uk/rsd-engineeringcourse/
-
 The package simulates the flight of a flock, displaying it in an animated plot.
 
 The Boids package includes the following main classes:
